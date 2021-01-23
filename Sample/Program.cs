@@ -21,10 +21,11 @@ namespace Sample
 
             while (count < 200)
             {
-                //Get actual value from device
-                double actualValue = array[count];
+                //Set timer then get actual value from device
+                //You must set currentTime before the actualValue, otherwise your device might not read properly
                 long currentTime = DateTime.Now.Ticks;
-                double controlValue = easyPID.TryGetControlSignal(actualValue, currentTime);
+                double actualValue = array[count];
+                double controlValue = easyPID.GetControlSignal(actualValue, currentTime);
                 Console.WriteLine($"Actual value is: {actualValue}, Control value is: {controlValue}");
                 ++count;
             }
