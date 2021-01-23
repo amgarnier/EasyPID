@@ -24,9 +24,9 @@ namespace Sample
                 //Set timer then get actual value from device
                 //You must set currentTime before the actualValue, otherwise your device might not read properly
                 long currentTime = DateTime.Now.Ticks;
-                double actualValue = array[count];
-                double controlValue = easyPID.GetControlSignal(actualValue, currentTime);
-                Console.WriteLine($"Actual value is: {actualValue}, Control value is: {controlValue}");
+                double ProcessVariable = array[count];
+                double controlVariable = easyPID.GetControlSignal(ProcessVariable, currentTime);
+                Console.WriteLine($"Process variable is: {ProcessVariable}, Control Variable is: {controlVariable}");
                 ++count;
             }
         }

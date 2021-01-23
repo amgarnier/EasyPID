@@ -23,12 +23,12 @@ namespace Controller.EasyPID
         public double Kd { get; private set; }
 
         /// <summary>
-        /// Goal Value
+        /// Setpoint or Setpoint Value
         /// </summary>
-        public double Goal { get; private set; }
+        public double Setpoint { get; private set; }
 
         /// <summary>
-        /// Goal Value
+        /// Output Speed Value
         /// </summary>
         public long OutputSpeed { get; }
 
@@ -89,16 +89,16 @@ namespace Controller.EasyPID
         /// <param name="Kp">Proportional Gain</param>
         /// <param name="Ki">Proportional Gain</param>
         /// <param name="Kd">Derivative Gain</param>
-        /// <param name="Goal">Goal Value</param>
+        /// <param name="Setpoint">Setpoint Value</param>
         /// <param name="OutputSpeed">The speed in milliseconds to get your output</param>
         /// <param name="MinOutput">Minimum Output Value of Controller</param>
         /// <param name="MaxOutput">Maximum Output Value of Controller</param>
-        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Goal = 0.0, long OutputSpeed = 1000, long MinOutput = 0, long MaxOutput = 1)
+        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0, long OutputSpeed = 1000, long MinOutput = 0, long MaxOutput = 1)
         {
             this.Kp = Kp;
             this.Ki = Kp;
             this.Kd = Kp;
-            this.Goal = Goal;
+            this.Setpoint = Setpoint;
             this.OutputSpeed = OutputSpeed;
             this.MinOutput = MinOutput;
             this.MaxOutput = MaxOutput;
@@ -119,14 +119,14 @@ namespace Controller.EasyPID
         /// <param name="Kp">Proportional Gain</param>
         /// <param name="Ki">Proportional Gain</param>
         /// <param name="Kd">Derivative Gain</param>
-        /// <param name="Goal">Goal Value</param>
+        /// <param name="Setpoint">Setpoint Value</param>
         /// <param name="OutputSpeed">The speed in milliseconds to get your output</param>
-        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Goal = 0.0, long OutputSpeed = 1000)
+        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0, long OutputSpeed = 1000)
         {
             this.Kp = Kp;
             this.Ki = Kp;
             this.Kd = Kp;
-            this.Goal = Goal;
+            this.Setpoint = Setpoint;
             this.OutputSpeed = OutputSpeed;
             this.OutputSpeed = OutputSpeed;
             if (OutputSpeed < 1)
@@ -143,17 +143,17 @@ namespace Controller.EasyPID
         /// <returns>
         /// Signal output in value between MinOutput and MaxOutput default is 0 to 1
         /// </returns>
-        /// <param name="ActualValue">Actual value to input</param>
+        /// <param name="ProcessVariable">Process value to input</param>
         /// <param name="currentTime">Current Time in ticks</param>
-        public double GetControlSignal(double ActualValue, long currentTime)
+        public double GetControlSignal(double ProcessVariable, long currentTime)
         {
             long intervalTicks = this.OutputSpeed * 10000;
             if (DateTime.Now.Ticks > (currentTime + intervalTicks))
             {
                 throw new IOException("Interval is set too low please increase to a value that is slower then the output of your signal");
             }
-            var errorValuedT = this.Goal - ActualValue;
-            error = this.Goal - ActualValue;
+            var errorValuedT = this.Setpoint - ProcessVariable;
+            error = this.Setpoint - ProcessVariable;
             errorResidual += (error * this.OutputSpeed / 1000);
             if (errorResidual > this.MaxOutput)
             {
