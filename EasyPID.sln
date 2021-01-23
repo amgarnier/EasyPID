@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyPID", "EasyPID\EasyPID.csproj", "{F10DFD63-9206-4F54-8724-4663B8A13605}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyPID", "EasyPID\EasyPID.csproj", "{F10DFD63-9206-4F54-8724-4663B8A13605}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2232BF56-FA7B-4DDE-9696-0B84245A48D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Sample\Sample.csproj", "{8F99ED0C-4ED6-44E0-9F0A-D457CB26D5C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{F10DFD63-9206-4F54-8724-4663B8A13605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F10DFD63-9206-4F54-8724-4663B8A13605}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F10DFD63-9206-4F54-8724-4663B8A13605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F99ED0C-4ED6-44E0-9F0A-D457CB26D5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F99ED0C-4ED6-44E0-9F0A-D457CB26D5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F99ED0C-4ED6-44E0-9F0A-D457CB26D5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F99ED0C-4ED6-44E0-9F0A-D457CB26D5C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F99ED0C-4ED6-44E0-9F0A-D457CB26D5C9} = {2232BF56-FA7B-4DDE-9696-0B84245A48D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB9774FA-4B9F-4D4C-9BB1-2EFBF0BF9618}
