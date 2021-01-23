@@ -46,27 +46,13 @@ namespace Controller.EasyPID
         /// Residual error from last Cycle
         /// </summary>
         private double errorResidual = 0;
+        private double errorValuedT = 0;
 
         public double ErrorResidual
         {
             get { return errorResidual; }
             set { errorResidual = value; }
         }
-
-        /// <summary>
-        /// Derivative of the function
-        /// </summary>
-        public double derivative { get; private set; }
-
-        /// <summary>
-        /// Error value currently
-        /// </summary>
-        public double error { get; private set; }
-
-        /// <summary>
-        /// Control variable
-        /// </summary>
-        public double controlVariable { get; private set; }
 
         /// <summary>
         /// Change in time
@@ -103,6 +89,8 @@ namespace Controller.EasyPID
             this.MinOutput = MinOutput;
             this.MaxOutput = MaxOutput;
             this.OutputSpeed = OutputSpeed;
+            this.errorPrevious = 0;
+            this.errorResidual = 0;
             if (OutputSpeed < 1)
             {
                 throw new IOException("Interval is set too low please update to be above 1 ms");
@@ -134,6 +122,8 @@ namespace Controller.EasyPID
             }
             this.MinOutput = 0;
             this.MaxOutput = 1;
+            this.errorPrevious = 0;
+            this.errorResidual = 0;
         }
 
         /// <summary>
@@ -153,6 +143,8 @@ namespace Controller.EasyPID
             this.OutputSpeed = 500;
             this.MinOutput = 0;
             this.MaxOutput = 1;
+            this.errorPrevious = 0;
+            this.errorResidual = 0;
         }
 
         /// <summary>
@@ -170,14 +162,14 @@ namespace Controller.EasyPID
             {
                 throw new IOException("Interval is set too low please increase to a value that is slower then the output of your signal");
             }
-            var errorValuedT = this.Setpoint - ProcessVariable;
-            error = this.Setpoint - ProcessVariable;
-            errorResidual += (error * this.OutputSpeed / 1000);
-            if (errorResidual > this.MaxOutput)
+            //this.errorPrevious = this.Setpoint - ProcessVariable;
+            var error = this.Setpoint - ProcessVariable;
+            this.errorResidual += (this.errorResidual * this.OutputSpeed / 1000);
+            if (this.errorResidual > this.MaxOutput)
             {
-                errorResidual = this.MaxOutput;
+                this.errorResidual = this.MaxOutput;
             }
-            derivative = (error - errorValuedT) / this.OutputSpeed / 1000;
+            var derivative = (error - this.errorPrevious) / this.OutputSpeed / 1000;
             if (Double.IsNaN(derivative))
             {
                 derivative = 0;
@@ -185,7 +177,7 @@ namespace Controller.EasyPID
             while (DateTime.Now.Ticks < (currentTime + intervalTicks))
             {
             }
-            controlVariable = (this.Kp * error) + (this.Ki * errorResidual) + (Kd * derivative);
+            var controlVariable = (this.Kp * error) + (this.Ki * this.errorResidual) + (Kd * derivative);
             if (controlVariable <= this.MinOutput)
             {
                 controlVariable = this.MinOutput;
@@ -194,7 +186,7 @@ namespace Controller.EasyPID
             {
                 controlVariable = this.MaxOutput;
             }
-            errorValuedT = error;
+            this.errorPrevious = error;
             return controlVariable;
         }
     }
