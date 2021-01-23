@@ -121,18 +121,36 @@ namespace Controller.EasyPID
         /// <param name="Kd">Derivative Gain</param>
         /// <param name="Setpoint">Setpoint Value</param>
         /// <param name="OutputSpeed">The speed in milliseconds to get your output</param>
-        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0, long OutputSpeed = 1000)
+        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0, long OutputSpeed = 500)
         {
             this.Kp = Kp;
             this.Ki = Kp;
             this.Kd = Kp;
             this.Setpoint = Setpoint;
             this.OutputSpeed = OutputSpeed;
-            this.OutputSpeed = OutputSpeed;
             if (OutputSpeed < 1)
             {
                 throw new IOException("Interval is set too low please update to be above 1 ms");
             }
+            this.MinOutput = 0;
+            this.MaxOutput = 1;
+        }
+
+        /// <summary>
+        /// Creates a new instance of the EasyPID Controller. With an output from 0 to 1
+        /// </summary>
+        /// <param name="Kp">Proportional Gain</param>
+        /// <param name="Ki">Proportional Gain</param>
+        /// <param name="Kd">Derivative Gain</param>
+        /// <param name="Setpoint">Setpoint Value</param>
+        /// <param name="OutputSpeed">The speed in milliseconds to get your output</param>
+        public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0)
+        {
+            this.Kp = Kp;
+            this.Ki = Kp;
+            this.Kd = Kp;
+            this.Setpoint = Setpoint;
+            this.OutputSpeed = 500;
             this.MinOutput = 0;
             this.MaxOutput = 1;
         }

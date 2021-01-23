@@ -17,7 +17,7 @@ namespace Sample
                 array[a] = (a + 3) + random.NextDouble();
             }
             //create a new instance of EasyPID
-            EasyPID easyPID = new EasyPID(.009, 0.05, 0.3, 120, 100);
+            EasyPID easyPID = new EasyPID(.009, 0.05, 0.3, 120,1000);
 
             while (count < 200)
             {
