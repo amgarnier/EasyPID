@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Aaron Garnier</Authors>
+    <Company>Aaron Garnier</Company>
+    <Description>This is an easy implementation of a PID controller</Description>
+    <PackageTags>PID, Controller, EasyPID, Proportional, Integral, Derivative, CSharp, csharp, CS, C#</PackageTags>
+  </PropertyGroup>
+
+</Project>
