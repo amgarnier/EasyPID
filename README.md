@@ -1,5 +1,8 @@
 # EasyPID - Easily create and run a PID controller for your device
 
+[![NuGet version (EasyPID)](https://img.shields.io/nuget/v/EasyPID)](https://www.nuget.org/packages/EasyPID/)
+
+
 ## Summary
 Easily create a PID device and receive and output the control signal. You may choose an output range. 
 It is important to note that you need to find the current time value in ticks before finding the Process Variable. This is to prevent your read interval to be faster than what your device can read.
