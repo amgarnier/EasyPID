@@ -1,7 +1,7 @@
 # EasyPID - Easily create and run a PID controller for your device
 
 ## Summary
-Easily create a PID device and recieve and output the control signal. You may choose an output range. 
+Easily create a PID device and receive and output the control signal. You may choose an output range. 
 It is important to note that you need to find the current time value in ticks before finding the Process Variable. This is to prevent your read interval to be faster than what your device can read.
 
 ## Sample
@@ -16,7 +16,7 @@ First we create a process variable for this example:
                 array[a] = (a + 3) + random.NextDouble();
             }
 ```
-Then we initate a new instance of EasyPID controller and input our Ki, Kp, Kd, Setpoint, and OutputSpeed.
+Then we initiate a new instance of EasyPID controller and input our Ki, Kp, Kd, Setpoint, and OutputSpeed.
 
 Controllers: Manually tune. Read more in the reference at the bottom of the page
 Kp= Proportional controller
