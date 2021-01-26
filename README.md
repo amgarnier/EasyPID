@@ -5,7 +5,9 @@ Easily create a PID device and recieve and output the control signal. You may ch
 It is important to note that you need to find the current time value in ticks before finding the Process Variable. This is to prevent your read interval to be faster than what your device can read.
 
 ## Sample
-This sample creates an array of numbers this is our Process Variable or input value.
+This sample creates an array of numbers this is our Process Variable or input value. We then use this Process Variable and run it through the easy PID to get our Control Variable (output). We also add a time into the PID to make sure that it is being run at a consistent interval and that our device is reading properly.
+
+First we create a process variable for this example:
 ```C#
  double[] array = new double[200];
             for (int a = 0; a < 200; a++)
@@ -25,11 +27,11 @@ Kd= Derivative controller
 
 Setpoint = The goal value that you want to set (for example 150 if you want your device to get you to 150F)
 
-OutputSpeed(optional) = This is how fast the controller will read. I recommend using "500" which is 0.5 seconds. You can go faster but it is limited by your processor and the speed of the device output. For this example we will use 1000 for a one second interval
+OutputSpeed(optional) = This is how fast the controller will read. I recommend using "500" which is 0.5 seconds. You can go faster but it is limited by your processor and the speed of the device output. For this example we will use 1000 for a one second interval.
 
-MinmumValue(optional)= Set minum value for the Control Variable. This is set to 0 by default can change to any real number for instance -100,-1,0 etc...
+MinmumValue(optional)= Set the minimum value for the Control Variable. This is set to 0 by default can change to any real number for instance -100,-1,0 etc...
 
-MaximumValue(optional)= Set maimum value for the Control Variable. This is set to 1 by default can change to any real number for instance 100, 1, 1000 etc...
+MaximumValue(optional)= Set the maximum value for the Control Variable. This is set to 1 by default can change to any real number for instance 100, 1, 1000 etc...
 ```C#
 //create a new instance of EasyPID any assigning an OutputSpeed
             EasyPID easyPID = new EasyPID(.009, 0.05, 0.3, 120, 1000);
@@ -74,8 +76,10 @@ private static void Main(string[] args)
         }
 
 ```
+# Note
+The code checks to see if your device is reading slower than the interval. You can ignore this exception by using a try, catch method. 
 
-
+Please message me or submit a bug request with issues or recommendations
 
 ## References 
 
