@@ -82,8 +82,8 @@ namespace Controller.EasyPID
         public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0, long OutputSpeed = 1000, long MinOutput = 0, long MaxOutput = 1)
         {
             this.Kp = Kp;
-            this.Ki = Kp;
-            this.Kd = Kp;
+            this.Ki = Ki;
+            this.Kd = Kd;
             this.Setpoint = Setpoint;
             this.OutputSpeed = OutputSpeed;
             this.MinOutput = MinOutput;
@@ -112,8 +112,8 @@ namespace Controller.EasyPID
         public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0, long OutputSpeed = 500)
         {
             this.Kp = Kp;
-            this.Ki = Kp;
-            this.Kd = Kp;
+            this.Ki = Ki;
+            this.Kd = Kd;
             this.Setpoint = Setpoint;
             this.OutputSpeed = OutputSpeed;
             if (OutputSpeed < 1)
@@ -137,8 +137,8 @@ namespace Controller.EasyPID
         public EasyPID(double Kp = 0.0, double Ki = 0.0, double Kd = 0.0, double Setpoint = 0.0)
         {
             this.Kp = Kp;
-            this.Ki = Kp;
-            this.Kd = Kp;
+            this.Ki = Ki;
+            this.Kd = Kd;
             this.Setpoint = Setpoint;
             this.OutputSpeed = 500;
             this.MinOutput = 0;
