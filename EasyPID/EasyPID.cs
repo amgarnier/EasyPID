@@ -164,7 +164,7 @@ namespace Controller.EasyPID
             }
             //this.errorPrevious = this.Setpoint - ProcessVariable;
             var error = this.Setpoint - ProcessVariable;
-            this.errorResidual += (this.errorResidual * this.OutputSpeed / 1000);
+            this.errorResidual += (error * this.OutputSpeed / 1000);
             if (this.errorResidual > this.MaxOutput)
             {
                 this.errorResidual = this.MaxOutput;
